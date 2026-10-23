@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="HOPE 2.0 Dragon Quest, an interactive tech skills game."
+    />
+    <title>HOPE 2.0 | Dragon Quest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark">H</span><span>HOPE <b>2.0</b></span>
+        </div>
+        <div class="topbar-tag">
+          DRAGON QUEST <span class="status-dot"></span>
+        </div>
+      </header>
+
+      <section id="start-screen" class="screen start-screen">
+        <div class="start-copy">
+          <p class="eyebrow">A four-realm skills adventure</p>
+          <h1>Find your way<br /><em>to the future.</em></h1>
+          <p class="intro">
+            The Girl is on a journey through four tech realms. Each dragon
+            guards a key. Think fast, choose wisely, and open the gate to what
+            comes next.
+          </p>
+          <button id="start-button" class="button button-primary">
+            Begin the quest <span>↗</span>
+          </button>
+        </div>
+        <div
+          class="start-art"
+          aria-label="Illustration of a student facing a dragon and four realm gates"
+        >
+          <div class="sun"></div>
+          <div class="mountain mountain-back"></div>
+          <div class="mountain mountain-front"></div>
+          <div class="dragon">♢</div>
+          <div class="girl">
+            <span class="girl-head"></span><span class="girl-body"></span
+            ><span class="girl-leg"></span>
+          </div>
+          <div class="gate-row"><i>01</i><i>02</i><i>03</i><i>04</i></div>
+        </div>
+        <div class="start-note">
+          <span>01</span> Four dragons. Twenty questions. One future.
+        </div>
+      </section>
+
+      <section
+        id="story-screen"
+        class="screen story-screen hidden"
+        aria-label="Story introduction"
+      >
+        <div class="story-heading">
+          <p class="eyebrow">THE JOURNEY BEGINS</p>
+          <h1>Find the key.<br /><em>Find HOPE.</em></h1>
+        </div>
+        <div class="story-stage">
+          <div class="story-sky"></div>
+          <div class="story-moon">✦</div>
+          <div class="story-mountain story-mountain-back"></div>
+          <div class="story-mountain story-mountain-front"></div>
+          <div class="hope-gate"><span>HOPE</span><i>✦</i></div>
+          <div class="story-dragon" aria-label="Dragon obstacle">
+            <span class="dragon-wing"></span><b>♢</b
+            ><small>THE<br />OBSTACLE</small>
+          </div>
+          <div class="story-girl" aria-label="The Girl">
+            <span class="story-head"></span><span class="story-cape"></span
+            ><span class="story-body"></span><span class="story-staff">✦</span>
+          </div>
+          <div class="story-caption caption-one">
+            A young student sets out<br />toward a brighter future.
+          </div>
+          <div class="story-caption caption-two">
+            But a dragon guards<br />every gate to HOPE.
+          </div>
+          <div class="story-caption caption-three">
+            Answer wisely.<br /><strong>Open the way.</strong>
+          </div>
+        </div>
+        <div class="story-footer">
+          <span id="story-progress">01 / 03</span
+          ><span class="story-line"><i></i></span
+          ><button id="skip-story" class="story-skip">
+            Skip intro <b>→</b>
+          </button>
+        </div>
+      </section>
+
+      <section id="game-screen" class="screen game-screen hidden">
+        <div class="game-heading">
+          <div>
+            <p id="realm-kicker" class="eyebrow">REALM 01 / ICT & OFFICE</p>
+            <h2 id="realm-title">The Word Wizard</h2>
+          </div>
+          <div class="score-box">
+            <span>KEYS</span><strong id="key-count">0 / 4</strong>
+          </div>
+        </div>
+        <div class="progress-track">
+          <div id="progress-bar" class="progress-value"></div>
+        </div>
+        <div class="battle-layout">
+          <aside class="dragon-panel">
+            <div class="dragon-badge">
+              DRAGON<br /><span id="dragon-number">01</span>
+            </div>
+            <div id="battle-dragon" class="battle-dragon">♢</div>
+            <p id="dragon-name" class="dragon-name">WORD WIZARD</p>
+            <p id="dragon-quote" class="dragon-quote">
+              “Knowledge is the sharpest key.”
+            </p>
+            <div
+              class="hearts"
+              aria-label="Five questions to defeat this dragon"
+            >
+              ◆ ◆ ◆ ◆ ◆
+            </div>
+          </aside>
+          <div class="question-panel">
+            <div class="question-meta">
+              <span id="question-number">QUESTION 01 / 05</span
+              ><span id="question-score">0 correct</span>
+            </div>
+            <h3 id="question-text">Loading question...</h3>
+            <div id="answers" class="answers"></div>
+            <p id="feedback" class="feedback" role="status"></p>
+            <button id="next-button" class="button button-next hidden">
+              Continue <span>→</span>
+            </button>
+          </div>
+        </div>
+        <div class="controls-note">
+          <span class="keycap">A</span><span class="keycap">B</span
+          ><span class="keycap">C</span> Choose your answer
+          <span class="divider"></span> Shake to restart on Micro:bit
+        </div>
+      </section>
+
+      <section id="win-screen" class="screen win-screen hidden">
+        <p class="eyebrow">QUEST COMPLETE / ALL KEYS COLLECTED</p>
+        <div class="win-key">✦</div>
+        <h1>The future is <em>open.</em></h1>
+        <p>
+          You crossed every realm, outsmarted every dragon, and found the key
+          inside your own curiosity.
+        </p>
+        <div class="win-message">
+          GET READY FOR<br /><strong>HOPE 3.0!</strong>
+        </div>
+        <button id="play-again-button" class="button button-primary">
+          Play again <span>↗</span>
+        </button>
+      </section>
+    </main>
+    <footer>
+      HOPE 2.0 <span>•</span> Digital Skills Quest <span>•</span> Built for
+      curious minds
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

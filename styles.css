@@ -1,0 +1,892 @@
+:root {
+  --ink: #17231e;
+  --paper: #f4f0e7;
+  --lime: #d6f268;
+  --coral: #fa735f;
+  --teal: #59b8aa;
+  --muted: #68746c;
+  --line: #cfd3c7;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "Space Grotesk", sans-serif;
+}
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.28;
+  background-image: radial-gradient(#17231e 0.55px, transparent 0.55px);
+  background-size: 7px 7px;
+  mask-image: linear-gradient(to bottom, black, transparent 80%);
+}
+.game-shell {
+  position: relative;
+  width: min(1180px, calc(100% - 48px));
+  min-height: calc(100vh - 62px);
+  margin: auto;
+}
+.topbar {
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 14px;
+}
+.brand b {
+  color: var(--coral);
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  background: var(--ink);
+  color: var(--lime);
+  border-radius: 50%;
+  font-size: 16px;
+}
+.topbar-tag {
+  font:
+    500 11px "DM Mono",
+    monospace;
+  letter-spacing: 0.1em;
+}
+.status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 8px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+.screen {
+  min-height: calc(100vh - 155px);
+  padding: 64px 0 38px;
+  animation: rise 0.6s ease both;
+}
+.hidden {
+  display: none !important;
+}
+.eyebrow {
+  color: var(--coral);
+  font:
+    500 11px "DM Mono",
+    monospace;
+  letter-spacing: 0.13em;
+  margin: 0 0 19px;
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+h1 {
+  font-size: clamp(48px, 7vw, 92px);
+  line-height: 0.91;
+  letter-spacing: -0.055em;
+  margin-bottom: 28px;
+}
+h1 em {
+  color: var(--coral);
+  font-style: normal;
+}
+.intro {
+  max-width: 390px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 34px;
+}
+.button {
+  border: 0;
+  font:
+    600 14px "Space Grotesk",
+    sans-serif;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+.button:hover {
+  transform: translateY(-3px);
+}
+.button-primary {
+  padding: 16px 20px;
+  color: var(--ink);
+  background: var(--lime);
+}
+.button span {
+  margin-left: 18px;
+  font-size: 18px;
+}
+.start-screen {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  align-items: center;
+  gap: 62px;
+  position: relative;
+}
+.start-art {
+  position: relative;
+  height: 450px;
+  overflow: hidden;
+  background: var(--teal);
+  border: 1px solid var(--ink);
+}
+.sun {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  right: 13%;
+  top: 11%;
+  border-radius: 50%;
+  background: var(--lime);
+}
+.mountain {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 190px solid transparent;
+  border-right: 190px solid transparent;
+  border-bottom: 230px solid #2e756f;
+}
+.mountain-back {
+  left: -10%;
+  border-bottom-color: #7bc6b4;
+  border-left-width: 250px;
+  border-right-width: 250px;
+  border-bottom-width: 280px;
+}
+.mountain-front {
+  right: -6%;
+  border-left-width: 280px;
+  border-right-width: 280px;
+  border-bottom-width: 330px;
+}
+.dragon {
+  position: absolute;
+  right: 26%;
+  bottom: 30%;
+  color: var(--coral);
+  font-size: 116px;
+  transform: rotate(45deg);
+  text-shadow: 13px 13px 0 var(--ink);
+}
+.girl {
+  position: absolute;
+  left: 29%;
+  bottom: 10%;
+  width: 36px;
+  height: 140px;
+  background: var(--coral);
+  border-radius: 19px 19px 4px 4px;
+}
+.girl-head {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  left: -1px;
+  top: -30px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+.girl-body:after,
+.girl-body:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 64px;
+  bottom: -45px;
+  background: var(--ink);
+  transform: rotate(14deg);
+}
+.girl-body:before {
+  left: 3px;
+}
+.girl-body:after {
+  right: 3px;
+  transform: rotate(-14deg);
+}
+.gate-row {
+  position: absolute;
+  bottom: 16px;
+  left: 21px;
+  right: 21px;
+  display: flex;
+  justify-content: space-between;
+  font:
+    500 11px "DM Mono",
+    monospace;
+  color: var(--lime);
+}
+.start-note {
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  font:
+    11px "DM Mono",
+    monospace;
+  color: var(--muted);
+}
+.start-note span {
+  color: var(--coral);
+  margin-right: 10px;
+}
+.story-screen {
+  padding-top: 42px;
+}
+.story-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 24px;
+}
+.story-heading h1 {
+  font-size: clamp(35px, 5vw, 62px);
+  margin: 0;
+  text-align: right;
+}
+.story-stage {
+  position: relative;
+  height: min(55vh, 470px);
+  min-height: 340px;
+  overflow: hidden;
+  background: #203d4a;
+  border: 1px solid var(--ink);
+  animation: stage-in 0.8s ease both;
+}
+.story-sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #203d4a 0%, #315b61 55%, #6aa891 100%);
+}
+.story-sky::before,
+.story-sky::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  top: 16%;
+  left: 14%;
+  background: var(--lime);
+  box-shadow:
+    85px 32px var(--lime),
+    180px -12px #f4f0e7,
+    310px 48px var(--lime),
+    460px 4px #f4f0e7,
+    590px 72px var(--lime),
+    710px 18px #f4f0e7;
+  opacity: 0.8;
+}
+.story-sky::after {
+  top: 29%;
+  left: 27%;
+  box-shadow:
+    120px 18px #f4f0e7,
+    270px -30px var(--lime),
+    400px 34px #f4f0e7,
+    580px -10px var(--lime);
+}
+.story-moon {
+  position: absolute;
+  top: 12%;
+  right: 13%;
+  color: var(--lime);
+  font-size: 52px;
+  animation: pulse-glow 2.6s ease-in-out infinite;
+}
+.story-mountain {
+  position: absolute;
+  bottom: -1px;
+  width: 0;
+  height: 0;
+  border-left: 260px solid transparent;
+  border-right: 260px solid transparent;
+  border-bottom: 245px solid #315b61;
+}
+.story-mountain-back {
+  left: -7%;
+  border-left-width: 330px;
+  border-right-width: 330px;
+  border-bottom-width: 290px;
+  border-bottom-color: #487d78;
+}
+.story-mountain-front {
+  right: -2%;
+  border-left-width: 360px;
+  border-right-width: 360px;
+  border-bottom-width: 350px;
+  border-bottom-color: #183f45;
+}
+.hope-gate {
+  position: absolute;
+  right: 12%;
+  bottom: 21%;
+  width: 94px;
+  height: 128px;
+  border: 5px solid var(--lime);
+  border-bottom: 0;
+  border-radius: 50px 50px 0 0;
+  color: var(--lime);
+  text-align: center;
+  padding-top: 47px;
+  font:
+    500 12px "DM Mono",
+    monospace;
+  box-shadow: 0 0 26px rgba(214, 242, 104, 0.4);
+  animation: gate-glow 2s ease-in-out infinite;
+}
+.hope-gate i {
+  display: block;
+  font-style: normal;
+  font-size: 22px;
+  margin-top: 4px;
+}
+.story-dragon {
+  position: absolute;
+  right: 29%;
+  bottom: 21%;
+  color: var(--coral);
+  animation: dragon-hover 2.5s ease-in-out infinite;
+  z-index: 2;
+}
+.story-dragon b {
+  display: block;
+  font-size: 108px;
+  line-height: 0.8;
+  transform: rotate(45deg);
+  text-shadow: 10px 10px 0 var(--ink);
+}
+.story-dragon small {
+  display: block;
+  margin: 20px 0 0 36px;
+  color: var(--lime);
+  font:
+    500 9px "DM Mono",
+    monospace;
+  letter-spacing: 0.1em;
+}
+.dragon-wing {
+  position: absolute;
+  width: 82px;
+  height: 52px;
+  left: -27px;
+  top: 12px;
+  border-radius: 100% 0 100% 0;
+  background: #d5564a;
+  transform: rotate(-25deg);
+}
+.story-girl {
+  position: absolute;
+  left: 14%;
+  bottom: 13%;
+  width: 31px;
+  height: 116px;
+  border-radius: 15px 15px 3px 3px;
+  background: var(--coral);
+  z-index: 3;
+  animation: girl-walk 4.8s cubic-bezier(0.4, 0, 0.6, 1) 0.7s forwards;
+}
+.story-head {
+  position: absolute;
+  top: -27px;
+  left: -2px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+.story-cape {
+  position: absolute;
+  top: 2px;
+  left: 20px;
+  width: 55px;
+  height: 81px;
+  background: #fa735f;
+  clip-path: polygon(0 0, 100% 20%, 70% 100%, 20% 80%);
+  opacity: 0.8;
+}
+.story-body::before,
+.story-body::after {
+  content: "";
+  position: absolute;
+  bottom: -39px;
+  width: 7px;
+  height: 53px;
+  background: var(--ink);
+}
+.story-body::before {
+  left: 2px;
+  transform: rotate(12deg);
+}
+.story-body::after {
+  right: 2px;
+  transform: rotate(-12deg);
+}
+.story-staff {
+  position: absolute;
+  right: -45px;
+  top: 17px;
+  color: var(--lime);
+  font-size: 22px;
+  transform: rotate(20deg);
+}
+.story-caption {
+  position: absolute;
+  left: 7%;
+  top: 14%;
+  color: var(--paper);
+  font-size: clamp(17px, 2.1vw, 26px);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  opacity: 0;
+  animation: caption-show 7.2s linear forwards;
+}
+.caption-one {
+  animation-delay: 0.2s;
+}
+.caption-two {
+  animation-delay: 2.5s;
+}
+.caption-three {
+  animation-delay: 4.8s;
+  color: var(--lime);
+}
+.story-caption strong {
+  color: var(--paper);
+}
+.story-footer {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 20px;
+  color: var(--muted);
+  font:
+    11px "DM Mono",
+    monospace;
+}
+.story-line {
+  width: 130px;
+  height: 2px;
+  background: var(--line);
+}
+.story-line i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--coral);
+  animation: story-progress 7.2s linear forwards;
+}
+.story-skip {
+  margin-left: auto;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  font:
+    500 12px "DM Mono",
+    monospace;
+  cursor: pointer;
+}
+.story-skip b {
+  margin-left: 10px;
+  color: var(--coral);
+  font-size: 18px;
+}
+@keyframes stage-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes girl-walk {
+  0% {
+    left: 14%;
+  }
+  100% {
+    left: 34%;
+  }
+}
+@keyframes dragon-hover {
+  50% {
+    transform: translateY(-11px) rotate(-2deg);
+  }
+}
+@keyframes gate-glow {
+  50% {
+    box-shadow: 0 0 45px rgba(214, 242, 104, 0.8);
+  }
+}
+@keyframes pulse-glow {
+  50% {
+    text-shadow: 0 0 22px var(--lime);
+  }
+}
+@keyframes caption-show {
+  0%,
+  8% {
+    opacity: 0;
+  }
+  12%,
+  29% {
+    opacity: 1;
+  }
+  34%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes story-progress {
+  to {
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-stage,
+  .story-girl,
+  .story-dragon,
+  .story-moon,
+  .hope-gate,
+  .story-caption,
+  .story-line i {
+    animation-play-state: paused;
+  }
+}
+.game-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.game-heading h2 {
+  font-size: clamp(32px, 4vw, 58px);
+  letter-spacing: -0.05em;
+  margin: 0;
+}
+.score-box {
+  text-align: right;
+}
+.score-box span,
+.score-box strong {
+  display: block;
+  font:
+    500 11px "DM Mono",
+    monospace;
+}
+.score-box strong {
+  font-size: 20px;
+  margin-top: 8px;
+}
+.progress-track {
+  height: 7px;
+  margin: 27px 0 44px;
+  background: #d9ddd1;
+}
+.progress-value {
+  height: 100%;
+  width: 25%;
+  background: var(--coral);
+  transition: width 0.4s;
+}
+.battle-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 70px;
+}
+.dragon-panel {
+  background: var(--ink);
+  color: var(--paper);
+  min-height: 430px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.dragon-panel:after {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border: 1px solid #61746a;
+  border-radius: 50%;
+  right: -90px;
+  bottom: -90px;
+}
+.dragon-badge {
+  font:
+    500 11px "DM Mono",
+    monospace;
+  color: var(--lime);
+  letter-spacing: 0.08em;
+}
+.dragon-badge span {
+  font-size: 28px;
+}
+.battle-dragon {
+  display: grid;
+  place-items: center;
+  height: 215px;
+  color: var(--coral);
+  font-size: 130px;
+  transform: rotate(45deg);
+  text-shadow: 12px 12px 0 #33433b;
+}
+.dragon-name {
+  color: var(--lime);
+  font:
+    500 13px "DM Mono",
+    monospace;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+.dragon-quote {
+  color: #a9b6aa;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 190px;
+}
+.hearts {
+  position: absolute;
+  right: 24px;
+  bottom: 25px;
+  color: var(--coral);
+  letter-spacing: 4px;
+  font-size: 12px;
+}
+.question-panel {
+  padding: 12px 0;
+}
+.question-meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font:
+    500 11px "DM Mono",
+    monospace;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 15px;
+}
+.question-meta span:last-child {
+  color: var(--coral);
+}
+.question-panel h3 {
+  font-size: clamp(25px, 3vw, 40px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  max-width: 650px;
+  margin: 35px 0 30px;
+}
+.answers {
+  display: grid;
+  gap: 12px;
+  max-width: 650px;
+}
+.answer {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-items: center;
+  width: 100%;
+  min-height: 58px;
+  text-align: left;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: transparent;
+  font:
+    500 15px "Space Grotesk",
+    sans-serif;
+  cursor: pointer;
+}
+.answer:hover,
+.answer:focus {
+  border-color: var(--ink);
+  background: #ebe7dc;
+  outline: none;
+}
+.answer-label {
+  font:
+    500 12px "DM Mono",
+    monospace;
+  color: var(--coral);
+}
+.answer.correct {
+  background: var(--lime);
+  border-color: var(--ink);
+}
+.answer.wrong {
+  background: #ffc1b5;
+  border-color: var(--coral);
+}
+.answer:disabled {
+  cursor: default;
+}
+.feedback {
+  min-height: 22px;
+  margin: 19px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.feedback.good {
+  color: #327b63;
+}
+.feedback.bad {
+  color: #d04d3c;
+}
+.button-next {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 13px 17px;
+  margin-top: 8px;
+}
+.controls-note {
+  margin-top: 34px;
+  color: var(--muted);
+  font:
+    11px "DM Mono",
+    monospace;
+}
+.keycap {
+  display: inline-grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  margin-right: 3px;
+  color: var(--ink);
+  border: 1px solid var(--muted);
+}
+.divider {
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--line);
+  margin: 0 15px;
+  vertical-align: middle;
+}
+.win-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.win-key {
+  color: var(--coral);
+  font-size: 76px;
+  margin: 10px 0;
+}
+.win-screen h1 {
+  margin-bottom: 20px;
+}
+.win-screen > p:not(.eyebrow) {
+  max-width: 440px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.win-message {
+  margin: 24px 0 32px;
+  color: var(--coral);
+  font:
+    500 14px "DM Mono",
+    monospace;
+  letter-spacing: 0.12em;
+  line-height: 1.7;
+}
+.win-message strong {
+  color: var(--ink);
+  font-size: 28px;
+  letter-spacing: 0;
+}
+footer {
+  position: relative;
+  width: min(1180px, calc(100% - 48px));
+  margin: auto;
+  padding: 18px 0 24px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font:
+    10px "DM Mono",
+    monospace;
+  letter-spacing: 0.08em;
+}
+footer span {
+  margin: 0 8px;
+  color: var(--coral);
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 760px) {
+  .game-shell,
+  footer {
+    width: calc(100% - 32px);
+  }
+  .topbar {
+    height: 70px;
+  }
+  .screen {
+    padding: 42px 0 30px;
+  }
+  .start-screen {
+    display: block;
+  }
+  .start-art {
+    height: 250px;
+    margin-top: 48px;
+  }
+  .start-note {
+    position: static;
+    margin-top: 20px;
+  }
+  .battle-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .dragon-panel {
+    min-height: 235px;
+  }
+  .battle-dragon {
+    height: 100px;
+    font-size: 75px;
+  }
+  .dragon-quote {
+    display: none;
+  }
+  .hearts {
+    bottom: 18px;
+  }
+  .game-heading h2 {
+    max-width: 220px;
+  }
+  .controls-note {
+    line-height: 2.2;
+  }
+  .divider {
+    display: none;
+  }
+}
