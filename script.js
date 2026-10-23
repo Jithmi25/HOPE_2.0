@@ -6,25 +6,45 @@ const levels = [
     quote: "“Knowledge is the sharpest key.”",
     questions: [
       [
-        "What keyboard shortcut pastes copied text?",
-        ["Ctrl + C", "Ctrl + V", "Ctrl + Z"],
+        "A team member's Excel formula shows #SPILL! after adding a dynamic array formula. What is causing this?",
+        [
+          "A non-empty cell is blocking the array output range.",
+          "A formula contains a circular reference to itself.",
+          "The formula exceeds the maximum allowable character limit.",
+        ],
+        0,
+      ],
+      [
+        "You need to export a graphic containing continuous color gradients for a high-res print poster. Which vector format avoids quality loss and pixelation?",
+        [".png", ".svg", ".gif"],
         1,
       ],
       [
-        "Which app is mainly used for presentations?",
-        ["Excel", "PowerPoint", "Notepad"],
+        "When co-authoring a shared cloud document, two users edit the exact same paragraph simultaneously while offline. What happens upon reconnecting?",
+        [
+          "The cloud server automatically deletes both edits to prevent data loss.",
+          "The application flags a conflict and asks the user to merge or choose edits.",
+          "The larger file size edit permanently overwrites the smaller one.",
+        ],
         1,
       ],
       [
-        "What does a spreadsheet organize?",
-        ["Numbers and data", "Music tracks", "Video clips"],
+        "In a large spreadsheet, a VLOOKUP query fails and returns #N/A even though the key clearly exists in column 1. What is the most likely cause?",
+        [
+          "Unseen leading/trailing spaces or mismatched data types (Text vs Number).",
+          "The target search column contains duplicate records.",
+          "Automatic calculation mode is disabled across the workbook.",
+        ],
         0,
       ],
-      ["Which key starts a new line?", ["Shift", "Enter", "Alt"], 1],
       [
-        "What does PDF stand for?",
-        ["Portable Document Format", "Public Data File", "Print Design Folder"],
-        0,
+        "Why is .webp preferred over .png or .jpg for modern interactive web applications?",
+        [
+          "It supports 3D vector rendering inside spreadsheet formulas.",
+          "It provides superior lossless and lossy compression at significantly smaller file sizes.",
+          "It encrypts image data automatically to protect intellectual property.",
+        ],
+        1,
       ],
     ],
   },
@@ -35,28 +55,48 @@ const levels = [
     quote: "“Every problem hides a pattern.”",
     questions: [
       [
-        "What sensor on the Micro:bit detects physical movement?",
-        ["Thermometer", "Accelerometer", "Speaker"],
+        "Inside a Micro:bit forever loop, a student reads a sensor continuously without a pause block. What issue occurs?",
+        [
+          "The accelerometer hardware permanently locks up.",
+          "Background event handlers get starved of CPU execution time, freezing input response.",
+          "The Micro:bit screen automatically clears all LED displays.",
+        ],
         1,
       ],
-      ["Which symbol means “equal to” in a comparison?", ["==", "!=", "=>"], 0],
       [
-        "What does a loop do?",
-        ["Repeats instructions", "Deletes code", "Draws a picture"],
-        0,
-      ],
-      [
-        "What does LED stand for?",
+        "You want to toggle an LED matrix display on and off using Button A. Which logic state management technique should you use?",
         [
-          "Light Emitting Diode",
-          "Logic Engine Display",
-          "Light Editing Device",
+          "A global boolean state variable flipped inside an on button A pressed event.",
+          "A nested while loop that continuously checks button A is pressed.",
+          "An array containing integer values from 0 to 255.",
         ],
         0,
       ],
       [
-        "Which button pair can trigger a third action on Micro:bit?",
-        ["A + B together", "Button A twice", "The reset button"],
+        "When reading raw values from the Micro:bit compass (magnetometer), the output readings jump randomly between 0 and 350 degrees. How do you debug this?",
+        [
+          "Re-flash the hex file with a higher baud rate setting.",
+          "Execute a hardware calibration routine to account for ambient magnetic interference.",
+          "Replace the if statement with a for loop.",
+        ],
+        1,
+      ],
+      [
+        "What is the primary difference between an edge-triggered event, such as on pin P0 pressed, and a polled state, such as pin P0 is pressed?",
+        [
+          "Events execute asynchronously via interrupts; polled states must be actively checked in code.",
+          "Events run faster than polled states by using external memory.",
+          "Polled states consume zero battery power on the Micro:bit.",
+        ],
+        0,
+      ],
+      [
+        "A loop increments a variable x by 1 until x == 10. Due to a sensor glitch, x jumps from 9 directly to 11. What bug occurs?",
+        [
+          "An infinite loop occurs because the exact termination condition x == 10 was missed.",
+          "The variable automatically resets to zero.",
+          "The Micro:bit triggers a hardware reset automatically.",
+        ],
         0,
       ],
     ],
@@ -68,28 +108,44 @@ const levels = [
     quote: "“Make the message impossible to miss.”",
     questions: [
       [
-        "What is the primary purpose of font contrast in posters?",
-        ["Readability", "File size", "Printing cost"],
+        "A poster design feels cluttered and hard to navigate despite using clean typography. What visual principle is missing?",
+        [
+          "Increasing font weight on every line of body text.",
+          "Strategic application of negative space (whitespace) to group related elements.",
+          "Adding saturated drop shadows behind every text box.",
+        ],
+        1,
+      ],
+      [
+        "According to WCAG accessibility guidelines, what minimum contrast ratio is required for standard body text against its background?",
+        ["1.5:1", "4.5:1", "10:1"],
+        1,
+      ],
+      [
+        "When designing a flyer for both printed posters and mobile screen views, which layout approach ensures visual hierarchy remains intact?",
+        [
+          "Using a strict typographic scale where heading sizes directly reflect content importance.",
+          "Scaling all text elements to fill 100% of the canvas width.",
+          "Using light grey text on white backgrounds for all subheadings.",
+        ],
         0,
       ],
       [
-        "Which layout principle creates visual order?",
-        ["Hierarchy", "Randomness", "Noise"],
+        "In design composition, what is the core purpose of Focal Point Alignment?",
+        [
+          "Directing the viewer's eye to the primary Call-to-Action (CTA) first.",
+          "Ensuring all graphical elements are perfectly centered on the page.",
+          "Equalizing the brightness values of every image asset.",
+        ],
         0,
       ],
       [
-        "What should a strong poster have?",
-        ["One clear message", "Ten tiny headlines", "No whitespace"],
-        0,
-      ],
-      [
-        "Which format is best for a logo with a transparent background?",
-        ["PNG", "TXT", "MP3"],
-        0,
-      ],
-      [
-        "What does alignment help create?",
-        ["A clean structure", "A louder sound", "A larger file"],
+        "Why should you avoid using pure black (#000000) text on a pure white (#FFFFFF) background in digital interfaces?",
+        [
+          "It causes high contrast strain and harsh visual vibrations for screen readers/viewers.",
+          "Web browsers cannot render pure black pixels accurately.",
+          "It automatically increases PDF file export sizes.",
+        ],
         0,
       ],
     ],
@@ -101,28 +157,44 @@ const levels = [
     quote: "“The future belongs to the curious.”",
     questions: [
       [
-        "What Google tool generates quick audio/text summaries from documents?",
-        ["Word", "NotebookLM", "Excel"],
+        "An AI model gives a confident, highly detailed technical answer that contains fabricated citation URLs. What is this called?",
+        ["Model Drift", "Hallucination", "Data Poisoning"],
         1,
       ],
       [
-        "What is AI designed to do?",
-        ["Learn from patterns", "Replace electricity", "Print paper"],
+        "When using Retrieval-Augmented Generation (RAG) tools like NotebookLM, how does the system minimize false information?",
+        [
+          "By generating answers grounded strictly in user-uploaded reference documents.",
+          "By searching the entire live web in real time for every prompt.",
+          "By disabling natural language responses and returning code only.",
+        ],
         0,
       ],
       [
-        "Which instruction guides an AI response?",
-        ["A prompt", "A pixel", "A folder"],
+        "Which prompt structure technique yields the highest quality, most precise output from Large Language Models (LLMs)?",
+        [
+          "Role + Task Context + Constraints + Expected Output Format.",
+          "Single-word keywords separated by commas.",
+          "Repeatedly pasting the same query multiple times in one prompt.",
+        ],
         0,
       ],
       [
-        "What should you do before trusting AI output?",
-        ["Check the facts", "Share it instantly", "Delete the source"],
+        "Why is it unsafe to paste confidential personal data or proprietary code into standard free-tier public AI chatbots?",
+        [
+          "Data may be stored and used to re-train future base models, exposing private inputs.",
+          "Public AI tools automatically publish user conversations on public web forums.",
+          "Large language models lock user accounts when sensitive words are detected.",
+        ],
         0,
       ],
       [
-        "What is a responsible use of technology?",
-        ["Protecting private data", "Copying every answer", "Ignoring sources"],
+        "When evaluating an AI-generated summary of an academic study, what is the most critical verification step?",
+        [
+          "Checking the source document's methodology and original data against the claims.",
+          "Asking the exact same AI model if its previous response was 100% true.",
+          "Translating the generated text into another language to test accuracy.",
+        ],
         0,
       ],
     ],
