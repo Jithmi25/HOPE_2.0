@@ -139,11 +139,20 @@ h1 em {
 .start-screen {
   display: grid;
   grid-template-columns: 1fr 1.25fr;
+  grid-template-rows: 1fr auto;
   align-items: center;
   gap: 62px;
   position: relative;
 }
+.start-copy {
+  grid-column: 1;
+  grid-row: 1;
+}
 .start-art {
+  position: relative;
+  height: 450px;
+  grid-column: 2;
+  grid-row: 1 / span 2;
   position: relative;
   height: 450px;
   overflow: hidden;
@@ -238,9 +247,12 @@ h1 em {
   color: var(--lime);
 }
 .start-note {
-  position: absolute;
-  bottom: 28px;
-  left: 0;
+  position: static;
+  grid-column: 1;
+  grid-row: 2;
+  align-self: end;
+  margin-top: 0;
+  padding-bottom: 8px;
   font:
     11px "DM Mono",
     monospace;
@@ -861,7 +873,8 @@ footer span {
   }
   .start-note {
     position: static;
-    margin-top: 20px;
+    margin-top: 24px;
+    padding-bottom: 0;
   }
   .battle-layout {
     grid-template-columns: 1fr;
